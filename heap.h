@@ -44,4 +44,6 @@ void clear_heap(heap_t *heap);
 // Frees all resources acquired to initialize heap
 void free_heap(heap_t *heap);
 
+static void heapify(heap_t *h, int i);
+
 #endif // HEAP_H_

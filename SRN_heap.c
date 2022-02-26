@@ -3,6 +3,26 @@
 #include "heap.h"
 #include <stdlib.h>
 
+static void heapify(heap_t *h, int i)
+{
+    int l, r, max, temp;
+    l = h->arr[(2*i)+1];
+    r = h->arr[(2*i)+2];
+    if (l != -1 && h->arr[l] > h->arr[i])
+        max = l;
+    else
+        max = i;
+    if (r != -1 && h->arr[r] > h->arr[max])
+        max = r;
+    if (max != i)
+    {
+        temp = h->arr[i];
+        h->arr[i] = h->arr[max];
+        h->arr[max] = temp;
+        heapify(h, max);
+    }
+}
+
 // Initialise heap
 // Set heap size to 0
 // Set heap max_size to paramter max_size
@@ -47,7 +67,7 @@ int extract_max(heap_t *heap, int *count_ptr)
     heap->arr[0] = heap->arr[heap->size - 1];
     heap->size--; // reducing the heap size
     heapify(heap, 0);
-    count_ptr = 1;
+    *count_ptr = 1;
     return data;
 }
 
@@ -79,7 +99,7 @@ int find_max(const heap_t *heap, int *count_ptr)
 {
     if (heap->size == 0)
         return -1;
-    count_ptr = 1;
+    *count_ptr = 1;
     return heap->arr[0];
 }
 
@@ -106,22 +126,4 @@ void free_heap(heap_t *heap)
     heap=NULL;
 }
 
-void heapify(heap_t *h, int i)
-{
-    int l, r, max, temp;
-    l = leftChild(h, i);
-    r = rightChild(h, i);
-    if (l != -1 && h->arr[l] > h->arr[i])
-        max = l;
-    else
-        max = i;
-    if (r != -1 && h->arr[r] > h->arr[max])
-        max = r;
-    if (max != i)
-    {
-        temp = h->arr[i];
-        h->arr[i] = h->arr[max];
-        h->arr[max] = temp;
-        heapify(h, max);
-    }
-}
+
