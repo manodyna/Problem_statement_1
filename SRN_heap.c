@@ -45,24 +45,25 @@ int extract_max(heap_t *heap, int *count_ptr)
         return -1;
     data = heap->arr[0];
     heap->arr[0] = heap->arr[heap->size - 1];
-    heap->size--; // reducing the heap size 
-    heapify(heap, 0);  
+    heap->size--; // reducing the heap size
+    heapify(heap, 0);
     count_ptr = 1;
-    return data;  
+    return data;
 }
 
 // Searches for the element key in the heap
 // Returns the element if found, else -1
 int search(const heap_t *heap, int key, int *count_ptr)
 {
-    if (heap->size==0)
+    if (heap->size == 0)
     {
         return -1;
     }
     else
     {
-        for(int i =0; i<heap->size; i++){
-            if (key==heap->arr[i])
+        for (int i = 0; i < heap->size; i++)
+        {
+            if (key == heap->arr[i])
             {
                 return key;
             }
@@ -83,7 +84,8 @@ int find_max(const heap_t *heap, int *count_ptr)
 }
 
 // Returns the minimum value in the heap
-int find_min(const heap_t *heap, int *count_ptr) {
+int find_min(const heap_t *heap, int *count_ptr)
+{
     return heap->arr[(heap->size) - 1];
 }
 
@@ -91,7 +93,14 @@ int find_min(const heap_t *heap, int *count_ptr) {
 void clear_heap(heap_t *heap) {}
 
 // Frees all resources acquired to initialize heap
-void free_heap(heap_t *heap) {}
+void free_heap(heap_t *heap)
+{
+    if (heap == NULL)
+        return;
+    free(heap->arr);
+    free(heap);
+    heap=NULL;
+}
 
 void heapify(heap_t *h, int i)
 {
