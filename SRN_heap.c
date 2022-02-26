@@ -1,17 +1,7 @@
-// Name:
-// SRN: 
+// Name: Manodnya K H
+// SRN: PES2UG20CS187
 #include "heap.h"
 #include <stdlib.h>
-
-/*
- ** Do not use global variables.
- ** Mark any functions that you declare in this file that are not in the header
- *as static
- ** Do not use static variables
- ** All occurences of count_ptr indicate that the number of comparison
- ** operations need to be stored in the location pointed by it
- ** The implementation can assume it is initialized to 0.
- */
 
 // Initialise heap
 // Set heap size to 0
@@ -27,7 +17,9 @@ void init_heap(heap_t *heap, int max_size) {
 // Insert element "key" to heap "heap"
 // and store the number of key comparisons made in the
 // location pointed to by count_ptr.
-void insert(heap_t *heap, int key, int *count_ptr) {}
+void insert(heap_t *heap, int key, int *count_ptr) {
+
+}
 
 // *Removes and Returns* the maximum element in the heap
 // and store the number of key comparisons made in the
@@ -51,3 +43,6 @@ void clear_heap(heap_t *heap) {}
 
 // Frees all resources acquired to initialize heap
 void free_heap(heap_t *heap) {}
+
+void percolateDown(struct Heap *h, int i) {  int l, r, max, temp;  l = leftChild(h, i);  r = rightChild(h, i);  if(l != -1 && h→array[l] > h→array[i])  max = l;  else  max = i;  if(r != -1&& h→array[r] > h→array[max])  max = r;  if(max != i) {  //Swap h→array[i] and h→array[max];  temp = h→array[i];  h→array[i] = h→array[max];  h→array[max] = temp;  percolateDown(h, max);  }  } 
+

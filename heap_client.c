@@ -1,4 +1,5 @@
 #include "heap.h"
+#include "SRN_heap.c"
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
