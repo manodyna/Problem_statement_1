@@ -90,7 +90,11 @@ int find_min(const heap_t *heap, int *count_ptr)
 }
 
 // Clears the heap for reuse
-void clear_heap(heap_t *heap) {}
+void clear_heap(heap_t *heap) {
+    if (heap == NULL)
+        return;
+    free(heap->arr);
+}
 
 // Frees all resources acquired to initialize heap
 void free_heap(heap_t *heap)
